@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 <head>
 <meta charset="ISO-8859-1">
 <title>Book list</title>
 </head>
 <body>
+	<h1>Books</h1>
 	<table class="table table-striped">
 		<tr>
-			<th>Title/Author</th>
-			<th>Julkaisuvuosi</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Year</th>
 			<th>Isbn</th>
-			<th>Hinta</th>
+			<th>Price</th>
 		</tr>
 		<tr th:each="book : ${books}">
-			<td th:text="${book.title} + ' ' + ${book.author}"></td>
+			<td th:text="${book.title}"></td>
+			<td th:text="${book.author}"></td>
 			<td th:text="${book.year}"></td>
 			<td th:text="${book.isbn}"></td>
 			<td th:text="${book.price}"></td>
-		</tr>
+ 			<td><a th:href="@{/delete/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a></td>    
+ 			<td><a th:href="@{/edit/{isbn}(isbn=${book.isbn})}" class="btn btn-secondary">Edit</a></td>    
+		</tr> 
 	</table>
+	<a href="/add" class="btn btn-success">Add Book</a>
 </body>
 </html>

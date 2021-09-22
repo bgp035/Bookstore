@@ -32,7 +32,7 @@ public class Book {
 		this.price = 0;
 	}
 
-
+	
 	public String getTitle() {
 		return title;
 	}
@@ -85,8 +85,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ "]";
+		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
+				+ ", price=" + price + "]";
 	}
 	
 }

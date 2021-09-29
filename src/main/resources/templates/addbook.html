@@ -20,9 +20,16 @@
 		  	<label for="isbn">Isbn</label>
 			<input type="text" th:field="*{isbn}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="price">Price</label>
+		  	<label for="price">Price</label>s
 			<input type="text" th:field="*{price}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="catlist">Category</label>
+			<select id="catlist" th:field="*{id}" class="form-control">
+			<option th:each="cat: ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+			</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>

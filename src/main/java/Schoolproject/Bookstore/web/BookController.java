@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import Schoolproject.Bookstore.domain.Book;
 import Schoolproject.Bookstore.domain.BookRepository;
+import Schoolproject.Bookstore.domain.CategoryRepository;
 
 @Controller
 
@@ -20,6 +21,9 @@ public class BookController {
 	}
 	@Autowired
 	private BookRepository repository;
+
+	@Autowired
+	private CategoryRepository crepository;
 	
 	@RequestMapping(value="/booklist")
 	public String bookList(Model model) {
@@ -30,6 +34,7 @@ public class BookController {
 	@RequestMapping(value="/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", crepository.findAll());
 		return "addbook";
 	}
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -43,10 +48,11 @@ public class BookController {
 		repository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
-	
+
 	@RequestMapping(value= "/edit/{isbn}")
 	public String addBook(@PathVariable("isbn") String bookId, Model model) {
 		model.addAttribute("book", repository.findById(bookId));
+		model.addAttribute("categories", crepository.findAll());
 		return "editbook";
 	}
 	

@@ -24,11 +24,18 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bookRepository) { 
+	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) { 
 		return (args) -> {
+			Category category1 = new Category(1, "Romance");
+			categoryRepository.save(category1);
+			Category category2 = new Category(2, "Thriller");
+			categoryRepository.save(category2);	
+			
+			
 			log.info("Tallenna kirjat");
-			Book book1 = new Book("Oppi", "Ope", 2015,"BN29292", 12.99);
-			Book book2 = new Book("Kirja", "Taija", 2020,"IS313131", 29.99);
+			Book book1 = new Book("Oppi", "Ope", 2015,"BN29292", 12.99, category1);
+			Book book2 = new Book("Kirja", "Taija", 2020,"IS313131", 29.99, category2);
+			
 			bookRepository.save(book1);
 			bookRepository.save(book2);	
 			
@@ -39,14 +46,10 @@ public class BookstoreApplication {
 
 		};
 	}
-	@Bean
+	/*@Bean
 	public CommandLineRunner categoryDemo(CategoryRepository categoryRepository) { 
 		return (args) -> {
 			log.info("Tallenna kategoriat");
-			Category category1 = new Category(1, "Romance");
-			Category category2 = new Category(2, "Thriller");
-			categoryRepository.save(category1);
-			categoryRepository.save(category2);	
 			
 			log.info("Hae Kategoriat");
 			for (Category category : categoryRepository.findAll()) {
@@ -54,6 +57,6 @@ public class BookstoreApplication {
 			}
 
 		};
-	}
+	}*/
 	
 }

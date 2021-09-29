@@ -1,7 +1,11 @@
 package Schoolproject.Bookstore.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -9,6 +13,8 @@ public class Category {
 	private int id;
 	private String name;
 	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy ="id")
+	private List<Book> books;
 	
 	
 	
@@ -20,8 +26,6 @@ public class Category {
 	
 	public Category() {
 		super();
-		this.id = 0;
-		this.name = null;
 	}
 	
 	public int getId() {
@@ -35,6 +39,14 @@ public class Category {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 	@Override

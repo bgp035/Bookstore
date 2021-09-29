@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import Schoolproject.Bookstore.domain.Book;
 import Schoolproject.Bookstore.domain.BookRepository;
+import Schoolproject.Bookstore.domain.Category;
+import Schoolproject.Bookstore.domain.CategoryRepository;
 
 
 @SpringBootApplication
@@ -33,6 +35,22 @@ public class BookstoreApplication {
 			log.info("Hae kirjat");
 			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
+			}
+
+		};
+	}
+	@Bean
+	public CommandLineRunner categoryDemo(CategoryRepository categoryRepository) { 
+		return (args) -> {
+			log.info("Tallenna kategoriat");
+			Category category1 = new Category(1, "Romance");
+			Category category2 = new Category(2, "Thriller");
+			categoryRepository.save(category1);
+			categoryRepository.save(category2);	
+			
+			log.info("Hae Kategoriat");
+			for (Category category : categoryRepository.findAll()) {
+				log.info(category.toString());
 			}
 
 		};

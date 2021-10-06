@@ -10,15 +10,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class Category {
 	@Id
-	private int id;
+	private long id;
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy ="id")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy ="category")
 	private List<Book> books;
 	
 	
 	
-	public Category(int id, String name) {
+	public Category(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -28,12 +28,16 @@ public class Category {
 		super();
 	}
 	
-	public int getId() {
+	
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}

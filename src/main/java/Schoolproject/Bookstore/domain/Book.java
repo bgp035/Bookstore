@@ -15,21 +15,21 @@ public class Book {
 	private double price;
 	@ManyToOne
 	@JoinColumn(name = "id")
-	private Category id;
+	private Category category;
 	
 
 	public Book() {
 		super();
 	}
 
-	public Book(String title, String author, int year, String isbn, double price, Category id) {
+	public Book(String title, String author, int year, String isbn, double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
-		this.id = id;
+		this.category = category;
 	}
 	
 
@@ -83,22 +83,19 @@ public class Book {
 		this.price = price;
 	}
 
-	
 
-	public Category getId() {
-		return id;
+	public Category getCategory() {
+		return category;
 	}
 
-
-	public void setId(Category id) {
-		this.id = id;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Book [title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price
-				+ ", id=" + id + "]";
+				+ ", category=" + category + "]";
 	}
 
 	

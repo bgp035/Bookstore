@@ -12,6 +12,8 @@ import Schoolproject.Bookstore.domain.Book;
 import Schoolproject.Bookstore.domain.BookRepository;
 import Schoolproject.Bookstore.domain.Category;
 import Schoolproject.Bookstore.domain.CategoryRepository;
+import Schoolproject.Bookstore.domain.User;
+import Schoolproject.Bookstore.domain.UserRepository;
 
 
 @SpringBootApplication
@@ -24,7 +26,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) { 
+	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository urepository) { 
 		return (args) -> {
 			Category category1 = new Category(1, "Romance");
 			categoryRepository.save(category1);
@@ -38,6 +40,12 @@ public class BookstoreApplication {
 			
 			bookRepository.save(book1);
 			bookRepository.save(book2);	
+			
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
+			
 			
 			log.info("Hae kirjat");
 			for (Book book : bookRepository.findAll()) {
